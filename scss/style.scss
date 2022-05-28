@@ -23,9 +23,80 @@ main {
 	padding: 0px 15px;
 }
 
+//* ----- Working with images ----- *//
+
 .img-fluid {
 	width: 100%;
 	height: auto;
+}
+
+.svg-arrowRight-dims {
+	width: 36px;
+	height: 37px;
+}
+.svg-course-dims {
+	width: 177px;
+	height: 147px;
+}
+.svg-courseBg2-dims {
+	width: 443px;
+	height: 323px;
+}
+.svg-courseBg1-dims {
+	width: 526px;
+	height: 323px;
+}
+.svg-entrant-dims {
+	width: 181px;
+	height: 179px;
+}
+.svg-entrantBg1-dims {
+	width: 458px;
+	height: 303px;
+}
+.svg-entrantBg2-dims {
+	width: 511px;
+	height: 277px;
+}
+.svg-facebook-dims {
+	width: 53px;
+	height: 54px;
+}
+.svg-instagram-dims {
+	width: 58px;
+	height: 54px;
+}
+.svg-logo-dims {
+	width: 50px;
+	height: 65px;
+}
+.svg-mail-dims {
+	width: 52px;
+	height: 52px;
+}
+.svg-phone-dims {
+	width: 53px;
+	height: 53px;
+}
+.svg-pointmark-dims {
+	width: 52px;
+	height: 53px;
+}
+.svg-student-dims {
+	width: 114px;
+	height: 117px;
+}
+.svg-studentBg1-dims {
+	width: 384px;
+	height: 312px;
+}
+.svg-studentBg2-dims {
+	width: 444px;
+	height: 298px;
+}
+.svg-youtube-dims {
+	width: 59px;
+	height: 54px;
 }
 
 //* --------- Variables ------------ *//
@@ -61,6 +132,24 @@ h3 {
 	justify-content: space-between;
 	min-height: 90px;
 }
+
+//! Insivible and Visible mod's //
+
+%invisible {
+	transform: translate(0, 10%);
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+%visible {
+	opacity: 1;
+	visibility: visible;
+	transform: translate(0px, 0px);
+	pointer-events: all;
+}
+
+//! ---------------------------//
+
 //* --------- Menu Burger ------------ *//
 
 .header__menu {
@@ -139,10 +228,7 @@ h3 {
 			margin: 0px 0px 0px 0px;
 		}
 	}
-	transform: translate(0, 10%);
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
+	@extend %invisible;
 }
 .menu__sub-link {
 	&:hover {
@@ -160,10 +246,7 @@ body._pc {
 	.menu__list > li {
 		min-width: 100px;
 		&:hover .menu__sub-list {
-			opacity: 1;
-			visibility: visible;
-			transform: translate(0px, 0px);
-			pointer-events: all;
+			@extend %visible;
 		}
 	}
 }
@@ -398,11 +481,139 @@ $fullscreen-height: 92.77vh;
 	// height: 100vh;
 	// max-height: $fullscreen-height;
 	max-width: 100vw;
-	height: 100vh;
+	height: $fullscreen-height;
 	img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		object-position: 70% 30%;
+	}
+}
+
+.cards {
+	background-color: $lightColor;
+	padding: 70px 0 140px 0;
+	&__container {
+		// display: grid;
+		// grid-template-columns: minmax(500px, 1fr);
+		// grid-template-rows: 1fr;
+		// gap: 0px 3%;
+		// grid-template-areas: ". . .";
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		align-content: center;
+		justify-content: space-between;
+	}
+}
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+	flex: 1 0 30%;
+	&__img {
+		z-index: 1;
+		img {
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+
+	&__title {
+		z-index: 1;
+		font-weight: 300;
+		text-align: center;
+	}
+
+	&::before,
+	&::after {
+		z-index: 0;
+		position: absolute;
+	}
+	&::after {
+		transition: all 1s;
+		@extend %invisible;
+	}
+	&:hover {
+		&::after {
+			@extend %visible;
+		}
+	}
+
+	&__course {
+		&::before {
+			content: "";
+			background: url(../img/courseBg1.png) no-repeat;
+			@extend .svg-courseBg1-dims;
+			bottom: -33%;
+		}
+		&::after {
+			content: "";
+			background: url(../img/courseBg2.png) no-repeat;
+			@extend .svg-courseBg2-dims;
+			top: -10%;
+		}
+	}
+
+	&__entrant {
+		&::before {
+			content: "";
+			background: url(../img/entrantBg1.png) no-repeat;
+			@extend .svg-entrantBg1-dims;
+			bottom: -50%;
+		}
+		&::after {
+			content: "";
+			background: url(../img/entrantBg2.png) no-repeat;
+			@extend .svg-entrantBg2-dims;
+			top: 0%;
+		}
+		.card__img {
+			margin-left: -20%;
+		}
+	}
+
+	&__student {
+		&::before {
+			content: "";
+			background: url(../img/studentBg1.png) no-repeat;
+			@extend .svg-studentBg1-dims;
+			bottom: -50%;
+		}
+		&::after {
+			content: "";
+			background: url(../img/studentBg2.png) no-repeat;
+			@extend .svg-studentBg2-dims;
+			top: -35%;
+		}
+	}
+	@media (max-width: em(1399px)) {
+		&::before,
+		&::after {
+			transform: scale(0.7) !important;
+		}
+	}
+	@media (max-width: em(1199px)) {
+		flex: 1 0 45%;
+		&__entrant {
+			margin-top: 15vh;
+		}
+		&__student {
+			margin-top: 23vh;
+		}
+	}
+	@media (max-width: em(767px)) {
+		flex: 1 1 100%;
+	}
+}
+
+body._touch .card {
+	.card__title span {
+		border-bottom: 2px solid #00006b;
+	}
+	&::after {
+		@extend %visible;
 	}
 }
