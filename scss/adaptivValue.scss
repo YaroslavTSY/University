@@ -16,7 +16,7 @@ $maxWidthContainer: 1800;
 			#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
 		}
 	} @else if $type == 3 {
-		//Procent
+		//Percent
 		#{$property}: calc(#{$minSize + "%"} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
 	} @else if $type == 4 {
 		//If smaller then Container Procent
