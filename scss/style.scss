@@ -29,6 +29,10 @@ main {
 	height: auto;
 }
 
+.svg-arrowMenu-dims {
+	width: 30px;
+	height: 31px;
+}
 .svg-arrowRight-dims {
 	width: 36px;
 	height: 37px;
@@ -159,8 +163,10 @@ h3 {
 .menu__icon {
 	display: none;
 	&._active {
-		left: -15%;
 		width: 100px;
+		//* Start burger-icon without container
+		margin-left: -15px;
+		//* ---------------------------------
 		@include adaptiv-value(min-height, 90, 60, 1);
 		background-color: $lightColor;
 		border-bottom: 1px solid #000;
@@ -191,25 +197,12 @@ h3 {
 		position: relative;
 		margin: 0px 0px 0px 25px;
 	}
-	@media (min-width: em(1200px)) {
-		display: flex;
-		align-items: center;
-		> li {
-			padding: 10px 0;
-			&:last-child {
-				margin: 0px 25px 0px 25px;
-			}
-		}
-	}
 }
 .menu__link {
 	font-size: 26px;
 	font-weight: 700;
 	&:hover {
 		text-decoration: underline;
-	}
-	@media (min-width: em(1200px)) {
-		color: $lightColor;
 	}
 }
 .menu__sub-list {
@@ -234,9 +227,6 @@ h3 {
 	&:hover {
 		text-decoration: underline;
 	}
-	@media (min-width: em(1200px)) {
-		color: $darkColor;
-	}
 }
 
 /* -------------------------------- */
@@ -252,7 +242,6 @@ body._pc {
 }
 body._touch {
 	.menu__list > li {
-		min-width: 120px;
 		&._active {
 			&::after {
 				transform: rotate(-180deg);
@@ -268,9 +257,12 @@ body._touch {
 			}
 		}
 	}
+	.menu__list > li:default {
+		min-width: 120px;
+	}
 
 	.menu__link {
-		flex: 1 1 auto;
+		padding: 0 10%;
 	}
 	.menu__open-link {
 		display: flex;
@@ -278,173 +270,16 @@ body._touch {
 		&::after {
 			content: "";
 			display: block;
-			width: 0;
-			height: 0;
 			margin: 5px 0px 0px 8px;
 			transition: transform 0.3s ease 0s;
 			border-left: 5px solid transparent;
 			border-right: 5px solid transparent;
 			border-top: 10px solid $lightColor;
 		}
-	}
-}
-
-//* --------- Burger Active ------------ *//
-//* ------ Used @media request's --------*//
-
-@media (max-width: em(1199px)) {
-	.menu__icon {
-		z-index: 5;
-		display: block;
-		position: relative;
-		width: 44px;
-		height: 33px;
-		cursor: pointer;
-		&::before,
-		&::after,
-		span {
-			left: 0;
-			position: absolute;
-			height: 24%;
-			width: 87.5%;
-			transition: all 0.3s ease 0s;
-			background: $lightColor;
-			border-radius: 90px;
+		&::after:default {
+			width: 0;
+			height: 0;
 		}
-		&::before,
-		&::after {
-			content: "";
-		}
-		&::before {
-			top: 0;
-		}
-		&::after {
-			bottom: 0;
-		}
-		span {
-			top: 50%;
-			transform: scale(1) translate(0px, -50%);
-			width: 100%;
-		}
-	}
-	.menu__body {
-		position: fixed;
-		left: 0;
-		top: -100%;
-		width: 100%;
-		height: 100%;
-		background-color: rgba($color: #000000, $alpha: 0.8);
-		@include adaptiv-value(padding-top, 90, 60, 1);
-		padding-bottom: 30px;
-		transition: top 0.3s ease 0s;
-		overflow: auto;
-		&::before {
-			content: "";
-			position: fixed;
-			width: 100%;
-			top: 0;
-			left: 0;
-			@include adaptiv-value(min-height, 90, 60, 1);
-			background-color: $darkColor;
-			z-index: 2;
-		}
-		&._active {
-			top: 0;
-		}
-	}
-	.menu__sub-list {
-		transform: translate(0px, 0px);
-		top: 0;
-	}
-	.menu__list {
-		> li {
-			display: flex;
-			flex-wrap: wrap;
-			flex: 0 1 60%;
-			margin: 0px 0px 0px 0px;
-			background-color: $lightColor;
-			padding: 22px 0px;
-			border-bottom: 1px solid #000000;
-			max-width: fit-content;
-			&._active,
-			&:hover {
-				.menu__sub-list {
-					display: block;
-					position: absolute;
-					right: -40vw;
-					border-left: 1px solid #000;
-					width: 40vw;
-					padding: 0;
-					li {
-						margin: 0;
-						padding: 22px 0;
-						font-weight: 700;
-						border-bottom: 1px solid #000;
-					}
-				}
-			}
-		}
-		> li:last-child {
-			margin-bottom: 0;
-		}
-	}
-	.menu__link {
-		width: 60vw;
-		font-size: 36px;
-		text-align: center;
-	}
-	.menu__open-link {
-		&::after {
-			position: absolute;
-			left: 92%;
-			z-index: 1;
-			border-top: 10px solid #000 !important;
-		}
-	}
-	.menu__sub-link {
-		font-size: 36px;
-	}
-}
-@media (max-width: em(575px)) {
-	body._touch {
-		.menu__list > li {
-			min-width: 100%;
-			border-bottom: 0px;
-			&._active {
-				.menu__sub-list {
-					border: 1px solid #000;
-					width: 100%;
-					margin: 5% 0 0 0;
-					border-bottom: 0px;
-				}
-				&::after {
-					top: 7%;
-				}
-			}
-			.menu__link {
-				flex: 1 1 100%;
-			}
-			.menu__sub-list {
-				margin: -100% 0 0 25%;
-				transform: translate(0, 0);
-				position: static;
-				li .menu__sub-link {
-					font-size: 32px;
-					font-weight: 400;
-				}
-			}
-		}
-	}
-}
-@media (min-width: em(1200px)) {
-	.header__menu {
-		order: 2;
-	}
-	.header__title {
-		order: 1;
-	}
-	.header__logo {
-		order: 3;
 	}
 }
 //* ---------Header Styles--------------- */
@@ -465,15 +300,6 @@ body._touch {
 .title-page {
 	font-weight: 700;
 	span {
-		display: none;
-		@media (min-width: em(1400px)) {
-			display: inline;
-		}
-		@media (max-width: em(1199px)) {
-			display: inline;
-		}
-	}
-	@media (max-width: em(767px)) {
 		display: none;
 	}
 }
@@ -522,9 +348,6 @@ body._touch {
 			font-size: 40px;
 			letter-spacing: normal;
 			margin-bottom: 15px;
-			@media (max-width: em(767px)) {
-				display: block;
-			}
 		}
 	}
 }
@@ -633,31 +456,279 @@ body._touch {
 			top: -35%;
 		}
 	}
-	@media (max-width: em(1399px)) {
+}
+
+body._touch .card {
+	.card__title span {
+		border-bottom: 1px solid #00006b;
+	}
+	&::after {
+		@extend %visible;
+		z-index: 0;
+	}
+}
+
+//* Media query's -----------------
+@media (min-width: em(1400px)) {
+	.title-page span {
+		display: inline;
+	}
+}
+
+@media (min-width: em(1200px)) {
+	.header__menu {
+		order: 2;
+	}
+	.header__title {
+		order: 1;
+	}
+	.header__logo {
+		order: 3;
+	}
+	.menu__list {
+		display: flex;
+		align-items: center;
+		> li {
+			padding: 10px 0;
+			&:last-child {
+				margin: 0px 25px 0px 25px;
+			}
+		}
+	}
+	.menu__link {
+		color: $lightColor;
+	}
+	.menu__sub-link {
+		color: $darkColor;
+	}
+}
+
+@media (max-width: em(1399px)) {
+	.card {
 		&::before,
 		&::after {
 			transform: scale(0.7) !important;
 		}
 	}
-	@media (max-width: em(1199px)) {
-		flex: 1 0 45%;
-		&__entrant {
-			@include adaptiv-value("margin-top", 10, 20, 4);
+}
+
+@media (max-width: em(1199px)) {
+	.title-page span {
+		display: inline;
+	}
+	//* --------- Burger Active ------------ *//
+	//* Styling a Burger -------
+	.menu__icon {
+		z-index: 5;
+		display: block;
+		position: relative;
+		width: 44px;
+		height: 33px;
+		cursor: pointer;
+		&::before,
+		&::after,
+		span {
+			left: 0;
+			position: absolute;
+			height: 24%;
+			width: 87.5%;
+			transition: all 0.3s ease 0s;
+			background: $lightColor;
+			border-radius: 90px;
 		}
-		&__student {
-			@include adaptiv-value("margin-top", 20, 30, 4);
+		&::before,
+		&::after {
+			content: "";
+		}
+		&::before {
+			top: 0;
+		}
+		&::after {
+			bottom: 0;
+		}
+		span {
+			top: 50%;
+			transform: scale(1) translate(0px, -50%);
+			width: 100%;
 		}
 	}
-	@media (max-width: em(767px)) {
-		flex: 1 1 100%;
+	//* -----------------
+	//* Transform menu in open Burger-menu
+	.menu__body {
+		position: fixed;
+		left: 0;
+		top: -100%;
+		width: 100%;
+		height: 100%;
+		background-color: rgba($color: #000000, $alpha: 0.8);
+		@include adaptiv-value(padding-top, 90, 60, 1);
+		padding-bottom: 30px;
+		transition: top 0.3s ease 0s;
+		overflow: auto;
+
+		//* Header plank -------
+		&::before {
+			content: "";
+			position: fixed;
+			width: 100%;
+			top: 0;
+			left: 0;
+			@include adaptiv-value(min-height, 90, 60, 1);
+			background-color: $darkColor;
+			z-index: 2;
+		}
+		//* --------------------
+
+		//* Move menu bottom ---
+		&._active {
+			top: 0;
+		}
+		//* --------------------
+	}
+	//* -----------------------
+
+	//* New start position (position in Burger) ---
+	.menu__sub-list {
+		transform: translate(0px, 0px);
+		top: 0;
+	}
+	//* -------------------------------------------
+
+	.menu__list {
+		> li {
+			//* Aside postion for menu -------
+			display: flex;
+			flex-wrap: wrap;
+			margin: 0px 0px 0px 0px;
+			background-color: $lightColor;
+			padding: 22px 0px;
+			border-bottom: 1px solid #000000;
+			max-width: fit-content;
+			//* ------------------------------
+			//* Active sub-list --------------
+			&._active,
+			&:hover {
+				.menu__sub-list {
+					right: -40vw;
+					border-left: 1px solid #000;
+					width: 40vw;
+					padding: 0;
+					li {
+						margin: 0;
+						padding: 22px 0;
+						font-weight: 700;
+						border-bottom: 1px solid #000;
+					}
+				}
+			}
+			//* ------------------------------
+		}
+		> li:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.menu__link {
+		width: 60vw;
+		font-size: 36px;
+		text-align: center;
+	}
+
+	//* Arrow to open sub-list --------
+	.menu__open-link {
+		&::after {
+			position: absolute;
+			right: 5%;
+			z-index: 1;
+			border: 0px !important;
+			background: url(@img/arrowMenu.png);
+			width: 30px;
+			height: 31px;
+		}
+	}
+	//* ---------------
+	.menu__sub-link {
+		font-size: 36px;
+	}
+	//* --------- Burger Active ------------ *//
+
+	//* Cards *//
+	.cards__container {
+		align-items: flex-end;
+	}
+	.card {
+		flex: 1 0 45%;
+		&__student {
+			@include adaptiv-value("margin-top", 5, 15, 4);
+		}
 	}
 }
 
-body._touch .card {
-	.card__title span {
-		border-bottom: 2px solid #00006b;
+@media (max-width: em(991px)) {
+}
+
+@media (max-width: em(767px)) {
+	.title-page {
+		display: none;
 	}
-	&::after {
-		@extend %visible;
+	.preview .preview__title span {
+		display: block;
+	}
+	.card {
+		flex: 1 1 100%;
+	}
+	.menu__sub-link {
+		font-size: 32px;
+		font-weight: 400;
+	}
+	.menu__sub-list {
+		li {
+			height: 81px;
+		}
+	}
+	.card {
+		&__student {
+			@include adaptiv-value("margin-top", 5, 30, 4);
+		}
+		&__entrant {
+			@include adaptiv-value("margin-top", 10, 20, 4);
+		}
+	}
+}
+
+@media (max-width: em(575px)) {
+	.menu__list > li {
+		min-width: 100%;
+		border-bottom: 0px;
+		&._active {
+			.menu__sub-list {
+				border: 1px solid #000;
+				margin: 0;
+				border-bottom: 0px;
+			}
+			&::after {
+				top: 7%;
+				transform: rotate(-90deg) !important;
+				margin: -5px 0px 0px 8px !important;
+			}
+			.menu__link {
+				padding-bottom: 5%;
+			}
+		}
+		.menu__link {
+			flex: 1 1 100%;
+		}
+		&::after {
+			right: 2% !important;
+			margin: 0px 0px 0px 8px !important;
+			transform: rotate(90deg) !important;
+		}
+		.menu__sub-list {
+			margin: -150% 0 0 0%;
+			width: 100% !important;
+			position: static;
+		}
+	}
+	.menu__icon._active {
+		border-bottom: none;
 	}
 }
