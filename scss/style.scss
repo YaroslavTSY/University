@@ -119,6 +119,9 @@ h2 {
 h3 {
 	font-size: 36px;
 }
+h4 {
+	font-size: 24px;
+}
 //* --------- Header ------------ *//
 .header {
 	position: fixed;
@@ -234,7 +237,7 @@ h3 {
 
 body._pc {
 	.menu__list > li {
-		min-width: 100px;
+		min-width: 105px;
 		&:hover .menu__sub-list {
 			@extend %visible;
 		}
@@ -257,12 +260,10 @@ body._touch {
 			}
 		}
 	}
-	.menu__list > li:default {
-		min-width: 120px;
-	}
 
 	.menu__link {
-		padding: 0 10%;
+		padding: 0 2%;
+		min-width: 110px;
 	}
 	.menu__open-link {
 		display: flex;
@@ -299,6 +300,7 @@ body._touch {
 //*
 .title-page {
 	font-weight: 700;
+	@include adaptiv-value(font-size, 36, 24, 1);
 	span {
 		display: none;
 	}
@@ -458,13 +460,137 @@ body._touch {
 	}
 }
 
-body._touch .card {
-	.card__title span {
-		border-bottom: 1px solid #00006b;
+.news {
+	padding: 66.5px 0;
+	background-color: $mainColor;
+	&__container {
 	}
-	&::after {
-		@extend %visible;
-		z-index: 0;
+
+	&__title {
+		font-weight: 700;
+		color: #fff;
+		text-align: center;
+		margin-bottom: 48px;
+		span {
+			font-weight: 300;
+		}
+	}
+
+	&__body {
+	}
+}
+.body-news {
+	&__items {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 55px;
+	}
+
+	&__item {
+		flex: 1 1 45%;
+		border-radius: 10px;
+		overflow: hidden;
+	}
+
+	&__more {
+		display: flex;
+		justify-content: center;
+		margin-top: 38px;
+	}
+
+	&__show-more {
+		color: #fff;
+		font-size: 36px;
+		padding: 15px 65px;
+		border-radius: 10px;
+		background-color: #01814d;
+		transition: all 0.3s ease 0s;
+		&:hover,
+		&._active {
+			background-color: $darkColor;
+		}
+	}
+}
+.item {
+	display: flex;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	transition: all 1s ease 0s;
+	&__img {
+		flex: 1 1 48%;
+		border-radius: 10px 0px 0px 10px;
+		overflow: hidden;
+		img {
+			height: 100%;
+		}
+	}
+
+	&__body {
+		flex: 1 1 52%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	&__content {
+		flex: 1 1 auto;
+		padding: 36px 7px;
+		text-align: center;
+		background-color: $lightColor;
+	}
+
+	&__title {
+		font-weight: 700;
+		margin-bottom: 30px;
+	}
+
+	&__text {
+		font-weight: 300;
+		font-size: 20px;
+	}
+
+	&__more {
+		padding: 20px 10px;
+	}
+
+	&__show-more {
+		font-weight: 700;
+		color: #fff;
+		display: flex;
+		justify-content: center;
+		&::after {
+			margin-left: 10px;
+			content: " ";
+			width: 36px;
+			height: 37px;
+			background: url(../img/arrowRight.svg);
+			transition: all 0.3s ease 0s;
+		}
+		&:hover {
+			&::after {
+				margin-right: -10px;
+			}
+		}
+	}
+
+	&._hidden {
+		@extend %invisible;
+		transform: translate(0, -300%) scale(0.9);
+		position: absolute;
+	}
+}
+
+body._touch {
+	.card {
+		.card__title span {
+			border-bottom: 1px solid #00006b;
+		}
+		&::after {
+			@extend %visible;
+			z-index: 0;
+		}
+	}
+	.body-news__show-more {
+		border-bottom: 1px solid #000;
 	}
 }
 
@@ -502,14 +628,18 @@ body._touch .card {
 		color: $darkColor;
 	}
 }
-
-@media (max-width: em(1399px)) {
+@media (max-width: em(1800px)) {
+	[class*="__container"] {
+		max-width: 1430px;
+	}
 	.card {
 		&::before,
 		&::after {
 			transform: scale(0.7) !important;
 		}
 	}
+}
+@media (max-width: em(1399px)) {
 }
 
 @media (max-width: em(1199px)) {
@@ -602,7 +732,7 @@ body._touch .card {
 			margin: 0px 0px 0px 0px;
 			background-color: $lightColor;
 			padding: 22px 0px;
-			border-bottom: 1px solid #000000;
+			border-bottom: 2px solid #000000;
 			max-width: fit-content;
 			//* ------------------------------
 			//* Active sub-list --------------
@@ -610,14 +740,14 @@ body._touch .card {
 			&:hover {
 				.menu__sub-list {
 					right: -40vw;
-					border-left: 1px solid #000;
+					border-left: 2px solid #000;
 					width: 40vw;
 					padding: 0;
 					li {
 						margin: 0;
 						padding: 22px 0;
 						font-weight: 700;
-						border-bottom: 1px solid #000;
+						border-bottom: 2px solid #000;
 					}
 				}
 			}
@@ -659,6 +789,13 @@ body._touch .card {
 		flex: 1 0 45%;
 		&__student {
 			@include adaptiv-value("margin-top", 5, 15, 4);
+		}
+	}
+	.body-news__item {
+		flex: 1 1 auto;
+		height: 75vh;
+		.item__img img {
+			width: 150%;
 		}
 	}
 }
