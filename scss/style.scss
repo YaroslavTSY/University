@@ -111,13 +111,13 @@ $mainColor: #03b26b;
 //* -------Title's font-size-------- *//
 
 h1 {
-	font-size: 90px;
+	@include adaptiv-value("font-size", 90, 0, 2);
 }
 h2 {
-	font-size: 70px;
+	@include adaptiv-value("font-size", 70, 48, 0);
 }
 h3 {
-	font-size: 36px;
+	@include adaptiv-value("font-size", 36, 0, 2);
 }
 h4 {
 	font-size: 24px;
@@ -339,6 +339,8 @@ body._touch {
 		position: absolute;
 		width: 100%;
 		@include adaptiv-value("padding-bottom", 85, 60, 0);
+		padding-left: 15px;
+		padding-right: 15px;
 		height: 100%;
 		display: flex;
 		justify-content: flex-end;
@@ -347,9 +349,9 @@ body._touch {
 		span {
 			display: none;
 			font-weight: 700;
-			font-size: 40px;
+			@include adaptiv-value("font-size", 40, 30, 1);
 			letter-spacing: normal;
-			margin-bottom: 15px;
+			@include adaptiv-value("margin-bottom", 15, 0, 1);
 		}
 	}
 }
@@ -473,6 +475,8 @@ body._touch {
 		margin-bottom: 48px;
 		span {
 			font-weight: 300;
+			margin-top: 10px;
+			display: inline-block;
 		}
 	}
 
@@ -501,10 +505,14 @@ body._touch {
 	&__show-more {
 		color: #fff;
 		font-size: 36px;
+		text-align: center;
 		padding: 15px 65px;
 		border-radius: 10px;
 		background-color: #01814d;
 		transition: all 0.3s ease 0s;
+		h3 {
+			min-width: 220px;
+		}
 		&:hover,
 		&._active {
 			background-color: $darkColor;
@@ -517,10 +525,17 @@ body._touch {
 	transition: all 1s ease 0s;
 	&__img {
 		flex: 1 1 48%;
+		position: relative;
 		border-radius: 10px 0px 0px 10px;
 		overflow: hidden;
 		img {
+			width: 100%;
 			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			object-fit: cover;
+			object-position: top left;
 		}
 	}
 
@@ -770,7 +785,7 @@ body._touch {
 			right: 5%;
 			z-index: 1;
 			border: 0px !important;
-			background: url(@img/arrowMenu.png);
+			background: url(@img/arrowMenu.svg);
 			width: 30px;
 			height: 31px;
 		}
@@ -791,16 +806,12 @@ body._touch {
 			@include adaptiv-value("margin-top", 5, 15, 4);
 		}
 	}
-	.body-news__item {
-		flex: 1 1 auto;
-		height: 75vh;
-		.item__img img {
-			width: 150%;
-		}
-	}
 }
 
 @media (max-width: em(991px)) {
+	.body-news__item {
+		flex: 1 1 auto;
+	}
 }
 
 @media (max-width: em(767px)) {
@@ -867,5 +878,14 @@ body._touch {
 	}
 	.menu__icon._active {
 		border-bottom: none;
+	}
+	.item {
+		flex-direction: column;
+		&__img {
+			max-height: 48vh;
+			img {
+				position: static;
+			}
+		}
 	}
 }

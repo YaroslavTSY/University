@@ -40,10 +40,10 @@ buttonMore.addEventListener('click', function () {
 	buttonMore.classList.toggle('_active');
 	if (buttonMore.contains(document.querySelector('.showed'))) {
 		buttonMore.innerHTML = `<a href="##" class="body-news__show-more">
-		Показати ще </a>`
+		<h3>Показати ще</h3> </a>`
 	} else {
 		buttonMore.innerHTML = `<a href="##" class="body-news__show-more showed">
-		Приховати
+		<h3>Приховати</h3>
 	</a>`
 	}
 
