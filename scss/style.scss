@@ -61,14 +61,6 @@ main {
 	width: 511px;
 	height: 277px;
 }
-.svg-facebook-dims {
-	width: 53px;
-	height: 54px;
-}
-.svg-instagram-dims {
-	width: 58px;
-	height: 54px;
-}
 .svg-logo-dims {
 	width: 50px;
 	height: 65px;
@@ -101,6 +93,14 @@ main {
 	width: 59px;
 	height: 54px;
 }
+.svg-facebook-dims {
+	width: 53px;
+	height: 54px;
+}
+.svg-instagram-dims {
+	width: 58px;
+	height: 54px;
+}
 
 //* --------- Variables ------------ *//
 
@@ -112,9 +112,10 @@ $mainColor: #03b26b;
 
 h1 {
 	@include adaptiv-value("font-size", 90, 0, 2);
+	@include adaptiv-value("font-size", 90, 45, 1);
 }
 h2 {
-	@include adaptiv-value("font-size", 70, 48, 0);
+	@include adaptiv-value("font-size", 70, 30, 0);
 }
 h3 {
 	@include adaptiv-value("font-size", 36, 0, 2);
@@ -137,7 +138,7 @@ h4 {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	@include adaptiv-value(min-height, 90, 60, 1);
+	@include adaptiv-value(min-height, 90, 51, 1);
 }
 
 //! Insivible and Visible mod's //
@@ -170,7 +171,7 @@ h4 {
 		//* Start burger-icon without container
 		margin-left: -15px;
 		//* ---------------------------------
-		@include adaptiv-value(min-height, 90, 60, 1);
+		@include adaptiv-value(height, 90, 51, 1);
 		background-color: $lightColor;
 		border-bottom: 1px solid #000;
 		span {
@@ -299,6 +300,7 @@ body._touch {
 
 //*
 .title-page {
+	color: $lightColor;
 	font-weight: 700;
 	@include adaptiv-value(font-size, 36, 24, 1);
 	span {
@@ -331,33 +333,25 @@ body._touch {
 	max-height: 100vh;
 	width: 100vw;
 	color: #fff;
-	.preview__title {
+	&__title {
 		font-weight: 900;
-		text-align: center;
 		letter-spacing: -0.0625em;
 		background: linear-gradient(0deg, rgba(0, 0, 0, 0.3215686275), transparent);
 		position: absolute;
 		width: 100%;
-		@include adaptiv-value("padding-bottom", 85, 60, 0);
+		height: 100%;
+		@include adaptiv-value("padding-bottom", 85, 25, 0);
 		padding-left: 15px;
 		padding-right: 15px;
-		height: 100%;
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
 		flex-direction: column;
-		span {
-			display: none;
-			font-weight: 700;
-			@include adaptiv-value("font-size", 40, 30, 1);
-			letter-spacing: normal;
-			@include adaptiv-value("margin-bottom", 15, 0, 1);
-		}
 	}
 }
 .preview__img {
+	@include adaptiv-value("margin-top", 90, 51, 1);
 	max-width: 100vw;
-	height: 100vh;
 	img {
 		width: 100%;
 		height: 100%;
@@ -368,7 +362,8 @@ body._touch {
 
 .cards {
 	background-color: $lightColor;
-	padding: 120px 0 170px 0;
+	@include adaptiv-value("padding-top", 120, 10, 1);
+	@include adaptiv-value("padding-bottom", 170, 10, 1);
 	&__container {
 		display: flex;
 		flex-wrap: wrap;
@@ -463,7 +458,8 @@ body._touch {
 }
 
 .news {
-	padding: 66.5px 0;
+	@include adaptiv-value("padding-top", 66.5, 20, 1);
+	@include adaptiv-value("padding-bottom", 66.5, 20, 1);
 	background-color: $mainColor;
 	&__container {
 	}
@@ -472,7 +468,7 @@ body._touch {
 		font-weight: 700;
 		color: #fff;
 		text-align: center;
-		margin-bottom: 48px;
+		@include adaptiv-value("margin-bottom", 48, 20, 1);
 		span {
 			font-weight: 300;
 			margin-top: 10px;
@@ -594,6 +590,85 @@ body._touch {
 	}
 }
 
+.footer {
+	&__upper {
+		padding: 40px 15px;
+		background-color: $lightColor;
+	}
+
+	&__lower {
+		padding: 0px 15px;
+	}
+}
+.upper-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	&__title {
+		font-weight: 700;
+		margin-bottom: 25px;
+	}
+	&__item {
+		max-width: 35vw;
+		display: flex;
+		flex-direction: column;
+	}
+	&__text {
+		font-weight: 300;
+		@include adaptiv-value("font-size", 24, 20, 0);
+	}
+}
+.address {
+	align-items: center;
+	&__content {
+		display: flex;
+		align-items: center;
+		text-align: center;
+	}
+}
+.content-address {
+	&__img {
+	}
+}
+.contacts {
+	align-items: flex-start;
+}
+.content-contacts {
+	> div:not(:last-child) {
+		margin-bottom: 18px;
+	}
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+	&__phone {
+	}
+
+	&__mail {
+	}
+}
+.phone {
+	&__img {
+	}
+}
+.mail {
+	&__img {
+	}
+}
+.lower-footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 74px;
+	background-color: #008d54;
+	img {
+	}
+	a:not(:last-child) {
+		margin-right: 27px;
+	}
+}
+
 body._touch {
 	.card {
 		.card__title span {
@@ -611,7 +686,7 @@ body._touch {
 
 //* Media query's -----------------
 @media (min-width: em(1400px)) {
-	.title-page span {
+	.title-page span.title-page__first-span {
 		display: inline;
 	}
 }
@@ -643,6 +718,12 @@ body._touch {
 		color: $darkColor;
 	}
 }
+@media (min-width: em(768px)) {
+	.preview__img {
+		margin-top: 0;
+		height: 100vh;
+	}
+}
 @media (max-width: em(1800px)) {
 	[class*="__container"] {
 		max-width: 1430px;
@@ -658,7 +739,7 @@ body._touch {
 }
 
 @media (max-width: em(1199px)) {
-	.title-page span {
+	.title-page span.title-page__first-span {
 		display: inline;
 	}
 	//* --------- Burger Active ------------ *//
@@ -706,7 +787,7 @@ body._touch {
 		width: 100%;
 		height: 100%;
 		background-color: rgba($color: #000000, $alpha: 0.8);
-		@include adaptiv-value(padding-top, 90, 60, 1);
+		@include adaptiv-value(padding-top, 90, 51, 1);
 		padding-bottom: 30px;
 		transition: top 0.3s ease 0s;
 		overflow: auto;
@@ -718,7 +799,7 @@ body._touch {
 			width: 100%;
 			top: 0;
 			left: 0;
-			@include adaptiv-value(min-height, 90, 60, 1);
+			@include adaptiv-value(height, 90, 51, 1);
 			background-color: $darkColor;
 			z-index: 2;
 		}
@@ -755,14 +836,14 @@ body._touch {
 			&:hover {
 				.menu__sub-list {
 					right: -40vw;
-					border-left: 2px solid #000;
+					border-left: 1px solid #000;
 					width: 40vw;
 					padding: 0;
 					li {
 						margin: 0;
 						padding: 22px 0;
 						font-weight: 700;
-						border-bottom: 2px solid #000;
+						border-bottom: 1px solid #000;
 					}
 				}
 			}
@@ -809,17 +890,37 @@ body._touch {
 }
 
 @media (max-width: em(991px)) {
+	.header__container {
+		@include adaptiv-value("height", 90, 51, 1);
+	}
 	.body-news__item {
 		flex: 1 1 auto;
+	}
+	.upper-footer {
+		flex-direction: column;
+		gap: 70px;
+		&__item {
+			max-width: 90vw;
+			text-align: center;
+			align-items: center;
+		}
 	}
 }
 
 @media (max-width: em(767px)) {
-	.title-page {
-		display: none;
+	.logo img {
+		width: 38px;
+		height: 38px;
 	}
-	.preview .preview__title span {
-		display: block;
+	.title-page {
+		span {
+			&.title-page__first-span {
+				display: none;
+			}
+			&.title-page__second-span {
+				display: inline;
+			}
+		}
 	}
 	.card {
 		flex: 1 1 100%;
@@ -846,12 +947,12 @@ body._touch {
 @media (max-width: em(575px)) {
 	.menu__list > li {
 		min-width: 100%;
-		border-bottom: 0px;
+		border-bottom: 2px solid #000;
 		&._active {
 			.menu__sub-list {
 				border: 1px solid #000;
 				margin: 0;
-				border-bottom: 0px;
+				border-bottom: 2px solid #000;
 			}
 			&::after {
 				top: 7%;
@@ -876,11 +977,47 @@ body._touch {
 			position: static;
 		}
 	}
+	.menu__open-link._active {
+		padding-bottom: 0;
+		border-bottom: none;
+	}
 	.menu__icon._active {
 		border-bottom: none;
 	}
+	.cards {
+		background-color: $mainColor;
+		&__container {
+			flex-direction: row;
+			column-gap: 1.5vw;
+			.card {
+				display: inline;
+				flex: 0 0 32%;
+				margin: 0;
+				padding: 2vw 1.5vw;
+				background-color: $darkColor;
+				border-radius: 10px;
+				.br {
+					display: none;
+				}
+				&__title {
+					letter-spacing: -0.08em;
+					color: #fff;
+					@include adaptiv-value("font-size", 50, 12, 1);
+					span {
+						border-bottom: none !important;
+					}
+				}
+				&::before,
+				&::after,
+				.card__img {
+					display: none;
+				}
+			}
+		}
+	}
 	.item {
 		flex-direction: column;
+		box-shadow: 0px 4px 20px rgb(0 0 0 / 50%);
 		&__img {
 			max-height: 48vh;
 			img {
