@@ -12,8 +12,8 @@
 </head>
 
 <body>
-	<div class="wrapper">
-		<header class="header">
+	<div class="wrapper wrapper-custom">
+		<header class="header header-custom">
 			<div class="header__container">
 				<div class="header__menu menu">
 					<div class="menu__icon">
@@ -35,7 +35,6 @@
 						$logo_img = '';
 						if( $custom_logo_id = get_theme_mod('custom_logo') ){
 							$logo_img = wp_get_attachment_image( $custom_logo_id, 'full', false, array(
-								'class'    => 'logo',
 								'itemprop' => 'logo',
 							) );
 						}

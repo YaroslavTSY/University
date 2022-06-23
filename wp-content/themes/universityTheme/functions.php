@@ -8,7 +8,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style( 'google-apis', 'https://fonts.googleapis.com' );
 	wp_enqueue_style( 'fonts-gstatic', 'https://fonts.gstatic.com' );
 	wp_enqueue_style( 'fonts', 'https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700;800&family=Mulish:wght@400;600;700;800;900&display=swap&_v=20220615222140' );
-	wp_enqueue_style( 'style', get_template_directory_uri() . '/assets/css/style.min.css?' );
+	wp_enqueue_style( 'style', get_template_directory_uri() . '/assets/css/style.css?' );
 
 
 

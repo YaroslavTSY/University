@@ -101,14 +101,9 @@ Template Name: home
 						<div class="item__body">
 							<div class="item__content">
 								<h4 class="item__title">
-									<?php the_title();?>
+									<?php the_title()?>
 								</h4>
 								<?php the_content();?>
-							</div>
-							<div class="item__more">
-								<a href="<?php the_field('news_item_button_more_link') ?>" class="item__show-more">
-									<h3>Детальніше</h3>
-								</a>
 							</div>
 						</div>
 					</div>
@@ -139,16 +134,9 @@ Template Name: home
 						<div class="item__body">
 							<div class="item__content">
 								<h4 class="item__title">
-									<?php the_title();?>
+									<?php the_title()?>
 								</h4>
-								<p class="item__text">
-									<?php the_content();?>
-								</p>
-							</div>
-							<div class="item__more">
-								<a href="<?php the_field('news_item_button_more_link') ?>" class="item__show-more">
-									<h3>Детальніше</h3>
-								</a>
+								<?php the_content();?>
 							</div>
 						</div>
 					</div>
