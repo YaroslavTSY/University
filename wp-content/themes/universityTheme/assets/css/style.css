@@ -1055,7 +1055,7 @@ body._touch .body-news__show-more {
   }
 
   .preview__img {
-    margin-top: calc(51px + 39 * ((100vw - 320px) / 1480));
+    margin-top: calc((51px + 39 * ((100vw - 320px) / 1480)) - 32px );
   }
 
   .cards {

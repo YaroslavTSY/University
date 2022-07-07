@@ -34,12 +34,9 @@ Template Name: home
 									setup_postdata( $post );
 			?>
 			<div class="card">
-				<a href="##" class="card__content">
-					<div class="card__img">
-						<?php the_post_thumbnail();?>
-					</div>
-					<h3 class="card__title"><?php the_content();?></h3>
-				</a>
+				<div class="card__content">
+					<?php the_content();?>
+				</div>
 			</div>
 			<?php 
 								}
