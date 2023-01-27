@@ -48,21 +48,6 @@ buttonMore.addEventListener('click', function () {
 	}
 
 })
-// if (newsItems.length > 0) {
-// 	for (let index = 0; index < newsItems.length; index++) {
-// 		const newsItem = newsItems[index];
-
-// 		buttonMore.addEventListener('click') function(e) {
-// 			buttonMore.classList.toggle('_active');
-// 			newsItem.classList.toggle('item__hiden');
-// 		}
-// 	}
-// }
-
-// window.onload = function () {
-// 	//Yandex map's imported from map.js
-// 	map
-// }
 
 
 
